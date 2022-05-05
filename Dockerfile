@@ -4,9 +4,9 @@ USER root
 
 RUN apt-get update
 
-ENV PORT=8080
+ENV PORT=3333
 
-EXPOSE 8080
+EXPOSE 3333
 
 WORKDIR /app
 

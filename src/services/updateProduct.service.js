@@ -1,19 +1,27 @@
+import { response } from "express";
 import database from "../database";
 
-const updateProductService = async (id, name, price) => {
+const updateProductService = async (id, name, price, category_id) => {
   try {
-    const res = await database.query(
-      "UPDATE products SET name = $1, price = $2 WHERE id = $3 RETURNING *",
-      [name, price, id]
+    const product = await database.query(
+      "SELECT * FROM products WHERE id = $1",
+      [id]
     );
-
+    const res = await database.query(
+      "UPDATE products SET name = $1, price = $2, category_id = $3 WHERE id = $4 RETURNING *",
+      [
+        name || product.rows[0].name,
+        price || product.rows[0].price,
+        category_id || product.rows[0].category_id,
+        id,
+      ]
+    );
     if (res.rows.length === 0) {
-      throw "product id not found";
+      throw "Nothing found";
     }
-
-    return { message: "Product updated", product: res.rows[0] };
+    return res.rows[0];
   } catch (err) {
-    throw new Error(err);
+    return response.status(400).json(err.message);
   }
 };
 
