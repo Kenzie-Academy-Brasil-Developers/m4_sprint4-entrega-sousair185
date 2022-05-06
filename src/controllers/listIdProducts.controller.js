@@ -4,11 +4,11 @@ const listIdProductsController = async (request, response) => {
   const { id } = request.params;
 
   try {
-    const products = await listIdProductsService(id);
+    const products = await listIdProductsService({ product_id: id });
 
-    return response.json(products);
+    return response.status(200).json({ ...products });
   } catch (err) {
-    return response.status(400).json(err.message);
+    return response.status(400).json({ message: err.message });
   }
 };
 

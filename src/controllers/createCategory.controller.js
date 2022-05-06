@@ -4,11 +4,13 @@ const createCategoryController = async (request, response) => {
   const { name } = request.body;
 
   try {
-    const category = await createCategoryService(name);
-    
-    return response.status(201).json({category}) + console.log(response);
+    const category = await createCategoryService({ name });
+
+    return response
+      .status(201)
+      .json({ message: "Category created", category: category });
   } catch (err) {
-    return response.status(400).json(err.message);
+    return response.status(400).json({ message: "Category don't created" });
   }
 };
 

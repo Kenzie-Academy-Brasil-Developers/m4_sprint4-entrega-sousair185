@@ -3,25 +3,23 @@ version: "3.9"
 services:
   api:
     container_name: api_products
-    image: api_express_products
+    image: api_products
     build: .
-    restart: always
     ports:
       - 3333:3333
     environment:
       - DB_USER=igor
       - DB_PASSWORD=0185
       - DB_HOST=localhost
-      - DB_PORT=5432
+      - DB_PORT=5431
       - DB=products_management
     depends_on:
       - db
   db:
     container_name: db_bug
-    restart: always
     image: postgres:12
     ports:
-      - 5432:5432
+      - 5431:5432
     environment:
       - POSTGRES_USER=igor
       - POSTGRES_PASSWORD=0185

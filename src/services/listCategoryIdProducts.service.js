@@ -1,20 +1,20 @@
 import database from "../database";
 
-const updateCategoryService = async ({ category_id, newName }) => {
+const listCategoryIdProductService = async ({ category_id }) => {
   try {
     const res = await database.query(
-      "UPDATE categories SET name = $1 WHERE id = $2 RETURNING *",
-      [newName, category_id]
+      "SELECT * FROM categories WHERE id = $1",
+      [category_id]
     );
     if (!res.rows.length) {
             throw new Error("Category id not found");
           }
-        
-        return res.rows[0]
+          
+        return { name: res.rows[0].name }
     } catch (err) {
         throw new Error(err.message)
         
     }
 }
 
-export default updateCategoryService;
+export default listCategoryIdProductService;

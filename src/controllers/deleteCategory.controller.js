@@ -1,15 +1,12 @@
 import deleteCategoryService from "../services/deleteCategory.service";
 
 const deleteCategoryController = async (request, response) => {
-  const { id } = request.params;
+  const { id: category_id } = request.params;
   try {
-    if (!id){
-    return response.status(200).json(`Missing ID`);
-    }
-    const res = await deleteCategoryService(id);
-    return response.status(200).json(`Category ${id} deleted`);
+    await deleteCategoryService({ category_id });
+    return response.status(200).json({ message: "Category deleted" });
   } catch (err) {
-    return response.status(400).json(err.message);
+    return response.status(400).json({ message: err.message });
   }
 };
 

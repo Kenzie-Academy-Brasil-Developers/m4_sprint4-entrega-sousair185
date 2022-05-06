@@ -3,13 +3,12 @@ import deleteProductService from "../services/deleteProduct.service";
 const deleteProductController = async (request, response) => {
   try {
     const { id } = request.params;
-    const deletedProduct = await deleteProductService(id);
+    const deletedProduct = await deleteProductService({ product_id: id });
     return response.status(200).json({
-      message: "Product deleted with success",
-      product: deletedProduct,
+      message: "Product deleted",
     });
   } catch (err) {
-    response.json(err.message);
+    response.status(400).json({ message: err.message });
   }
 };
 

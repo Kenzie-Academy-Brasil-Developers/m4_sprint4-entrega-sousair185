@@ -5,7 +5,7 @@ const listCategoriesService = async () => {
     const res = await database.query("SELECT * FROM categories");
     return res.rows;
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err.message);
   }
 };
 

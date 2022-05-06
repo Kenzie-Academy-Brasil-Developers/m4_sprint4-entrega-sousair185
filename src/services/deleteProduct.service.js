@@ -1,10 +1,10 @@
 import database from "../database";
 
-const deleteProductService = async (id) => {
+const deleteProductService = async ({ product_id }) => {
   try {
     const res = await database.query(
       "DELETE FROM products WHERE id = $1 RETURNING *",
-      [id]
+      [product_id]
     );
 
     if (res.rows.length === 0) {
@@ -13,7 +13,7 @@ const deleteProductService = async (id) => {
 
     return "Product deleted";
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err.message);
   }
 };
 

@@ -1,4 +1,3 @@
-import { response } from "express";
 import database from "../database";
 
 const updateProductService = async (id, name, price, category_id) => {
@@ -17,11 +16,11 @@ const updateProductService = async (id, name, price, category_id) => {
       ]
     );
     if (res.rows.length === 0) {
-      throw "Nothing found";
+      throw "Product not found";
     }
     return res.rows[0];
   } catch (err) {
-    return response.status(400).json(err.message);
+    throw new Error(err.message);
   }
 };
 

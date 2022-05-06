@@ -1,20 +1,17 @@
 import updateCategoryService from "../services/updateCategory.service";
 
 const updateCategoryController = async (request, response) => {
-  const { newName } = request.body;
+  const { name } = request.body;
   const { id } = request.params;
 
   try {
-    if (newName) {
-      const res = await updateCategoryService(id, newName);
-      return response.status(200).json(res);
-    } else {
-      return response.status(200).json({
-        message: "You can change only the name using the newName key",
-      });
-    }
+    const res = await updateCategoryService({ category_id: id, name });
+    return response.status(200).json({
+      message: "Category updated",
+      res: { name: `${res.name} Updated`, ...res },
+    });
   } catch (err) {
-    return response.json(err);
+    return response.status(400).json({ message: "Category don't updated" });
   }
 };
 

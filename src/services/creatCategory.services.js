@@ -1,18 +1,14 @@
 import database from "../database";
 
-const createCategoryService = async (name) => {
+const createCategoryService = async ({ name }) => {
   try {
-    const { rows } = await database.query(
+    const res = await database.query(
       "INSERT INTO  categories (name) VALUES ($1) RETURNING *",
       [name]
-    );
-    const res = {
-      message: `Category ${rows[0].name} created`,
-      category: rows[0],
-    };
-    return res;
+    )
+    return res.rows[0];
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err.message);
   }
 };
 
