@@ -6,7 +6,7 @@ const deleteCategoryController = async (request, response) => {
     await deleteCategoryService({ category_id });
     return response.status(200).json({ message: "Category deleted" });
   } catch (err) {
-    return response.status(400).json({ message: err.message });
+    return response.status(400).json({ message: "Category don't be deleted" });
   }
 };
 

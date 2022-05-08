@@ -8,7 +8,9 @@ const listCategoryProductController = async (request, response) => {
 
     return response.status(200).json(products);
   } catch (err) {
-    return response.status(400).json({ message: err.message });
+    return response
+      .status(400)
+      .json({ message: "Don't be possible list product" });
   }
 };
 

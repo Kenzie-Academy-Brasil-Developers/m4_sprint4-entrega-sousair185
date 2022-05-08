@@ -11,7 +11,7 @@ const router = Router();
 router.post("/", createProductController);
 router.get("/", listProductsController);
 router.get("/:id", listIdProductsController);
-router.get("/products/category/:category_id", listCategoryProductController);
+router.get("/category/:category_id", listCategoryProductController);
 router.patch("/:id", updateProductController);
 router.delete("/:id", deleteProductController);
 

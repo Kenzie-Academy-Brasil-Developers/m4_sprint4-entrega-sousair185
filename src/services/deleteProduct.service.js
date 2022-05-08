@@ -8,7 +8,7 @@ const deleteProductService = async ({ product_id }) => {
     );
 
     if (res.rows.length === 0) {
-      throw "product id not found";
+      throw new Error("product id not found");
     }
 
     return "Product deleted";

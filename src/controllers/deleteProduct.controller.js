@@ -8,7 +8,7 @@ const deleteProductController = async (request, response) => {
       message: "Product deleted",
     });
   } catch (err) {
-    response.status(400).json({ message: err.message });
+    response.status(400).json({ message: "Product don't be deleted" });
   }
 };
 

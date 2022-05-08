@@ -7,8 +7,8 @@ import updateCategoryController from "../controllers/updateCategory.controller";
 
 const router = Router();
 
-router.get("/", listCategoriesController);
-router.post("/", createCategoryController);
+router.get("", listCategoriesController);
+router.post("", createCategoryController);
 router.get("/:id", listCategoriesByIdController);
 router.patch("/:id", updateCategoryController);
 router.delete("/:id", deleteCategoryController);

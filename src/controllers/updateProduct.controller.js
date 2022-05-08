@@ -14,7 +14,7 @@ const updateProductController = async (request, response) => {
       .status(200)
       .json({ message: "Product updated", ...udatedProduct });
   } catch (err) {
-    return response.status(400).json({ message: err.message });
+    return response.status(400).json({ message: "Product don't be updated" });
   }
 };
 
