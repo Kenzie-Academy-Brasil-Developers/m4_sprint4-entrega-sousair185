@@ -1,9 +1,11 @@
 import database from "../database";
 
-const listProductsService = async () => {
+const listProductsService = async (product_id) => {
   try {
-    const res = await database.query("SELECT * FROM products");
-    return res.rows;
+    const where = !!product_id ? `id = '${product_id}'` : "1=1";
+    const res = await database.query(`SELECT * FROM products WHERE ${where};`);
+
+    return !!product_id ? res.rows[0] : res.rows;
   } catch (err) {
     throw new Error(err.message);
   }

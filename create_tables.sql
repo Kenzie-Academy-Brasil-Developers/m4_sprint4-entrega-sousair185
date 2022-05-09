@@ -12,4 +12,3 @@ CREATE TABLE IF NOT EXISTS products(
     category_id INTEGER DEFAULT (null),
     FOREIGN KEY (category_id) REFERENCES categories (id)
 );
-
